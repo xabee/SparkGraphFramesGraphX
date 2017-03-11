@@ -1,0 +1,136 @@
+Xavier Gonzalez
+
+Session: Apache Spark GraphFrames/GraphX
+April 20th, 2016
+
+Exercise 1
+-------------------------------------------------------------------------------
+
+Ran example successfully
+
+Exercise 2
+-------------------------------------------------------------------------------
+
+	4.2.1 Graph is loaded from files
+		GraphFrame(v:[id: string, name: string, age: int], e:[src: string, dst: string, likes: string])
+		
+		EDGES:
+		+---+---+-----+
+		|src|dst|likes|
+		+---+---+-----+
+		|  2|  1|    7|
+		|  2|  4|    2|
+		|  3|  2|    4|
+		|  3|  6|    3|
+		|  4|  1|    1|
+		|  5|  2|    2|
+		|  5|  3|    8|
+		|  5|  6|    3|
+		+---+---+-----+
+
+		VERTICES:
+		+---+-------+---+
+		| id|   name|age|
+		+---+-------+---+
+		|  1|  Alice| 28|
+		|  2|    Bob| 27|
+		|  3|Charlie| 65|
+		|  4|  David| 42|
+		|  5|     Ed| 55|
+		|  6|   Fran| 50|
+		+---+-------+---+
+		
+	4.2.2	Graph Views
+	
+	DataFrame filteredvertices = vertices.filter("age>=30");
+	
+		+---+-------+---+
+		| id|   name|age|
+		+---+-------+---+
+		|  3|Charlie| 65|
+		|  4|  David| 42|
+		|  5|     Ed| 55|
+		|  6|   Fran| 50|
+		+---+-------+---+
+	
+	display who likes who:
+	
+		Bob loves Alice
+		David likes Alice
+		Charlie likes Bob
+		Ed likes Bob
+		Ed loves Charlie
+		Bob likes David
+		Charlie likes Fran
+		Ed likes Fran
+	
+	4.2.3	Querying the Graph
+	
+	G.vertices().orderBy("age").first()
+	Younger node: 		[2,Bob,27]
+
+	G.inDegrees().show();
+	 in 'likes' (different) per node: 
+
+	+---+--------+
+	| id|inDegree|
+	+---+--------+
+	|  1|       2|
+	|  2|       2|
+	|  3|       1|
+	|  4|       1|
+	|  6|       2|
+	+---+--------+
+
+	G.outDegrees().show();
+	 given 'likes' (different) per node
+
+	+---+---------+
+	| id|outDegree|
+	+---+---------+
+	|  2|        2|
+	|  3|        2|
+	|  4|        1|
+	|  5|        3|
+	+---+---------+
+	
+	4.2.4 Motif Finding
+	
+	Find triplets of users A,B,C where A follows B and B follows C, but A does not follow C
+	G.find("(a)-[e]->(b);(b)-[e1]->(c); !(a)-[]->(c) ").show();
+	
+	|      e|             a|         b|     e1|           c|
+	+-------+--------------+----------+-------+------------+
+	|[3,2,4]|[3,Charlie,65]|[2,Bob,27]|[2,4,2]|[4,David,42]|
+	|[5,2,2]|     [5,Ed,55]|[2,Bob,27]|[2,1,7]|[1,Alice,28]|
+	|[5,2,2]|     [5,Ed,55]|[2,Bob,27]|[2,4,2]|[4,David,42]|
+	|[3,2,4]|[3,Charlie,65]|[2,Bob,27]|[2,1,7]|[1,Alice,28]|
+	+-------+--------------+----------+-------+------------+
+
+    Find the subgraph of people with 3 likes or more
+	G.find("(a)-[e]->(b)").filter("e.likes >= 3").show();
+
+	|      e|             a|             b|
+	+-------+--------------+--------------+
+	|[2,1,7]|    [2,Bob,27]|  [1,Alice,28]|
+	|[3,2,4]|[3,Charlie,65]|    [2,Bob,27]|
+	|[5,3,8]|     [5,Ed,55]|[3,Charlie,65]|
+	|[3,6,3]|[3,Charlie,65]|   [6,Fran,50]|
+	|[5,6,3]|     [5,Ed,55]|   [6,Fran,50]|
+	+-------+--------------+--------------+
+	
+Exercise 3
+-------------------------------------------------------------------------------
+
+10 most relevant articles:
+
+1: University of California, Berkeley ----> pageRank: 1317.270137450383
+2: Berkeley, California ----> pageRank: 661.4174325203296
+3: Uc berkeley ----> pageRank: 161.7901394635611
+4: Berkeley Software Distribution ----> pageRank: 89.98864952380721
+5: George Berkeley ----> pageRank: 81.56060651463893
+6: Lawrence Berkeley National Laboratory ----> pageRank: 81.35488919850675
+7: Busby Berkeley ----> pageRank: 47.48583691199199
+8: Berkeley Hills ----> pageRank: 44.11405893667546
+9: Xander Berkeley ----> pageRank: 30.340373413147088
+10: Berkeley County, South Carolina ----> pageRank: 28.45000525145052
