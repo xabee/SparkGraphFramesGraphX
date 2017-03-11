@@ -1,0 +1,23 @@
+18:02:13,689 I: (ErlangCore.java:64) : Starting CORE Thread[Worker-2,5,main]
+18:02:13,728 I: (ErlangCore.java:79) : *** starting Erlide v0.29.11.201502161407 (core=0.24.12.201502161407) (model api=0.24.11.201502161407) *** (Cp1252) ui
+18:02:13,770 I: (ErlangCore.java:86) : Started CORE
+18:02:13,770 F: (ErlangPlugin.java:88) : Core started
+18:02:16,411 F: (ErlangHostnameRetriever.java:40) : Test long hostname: b5s201pc41.fib.upc.es
+18:02:16,682 F: (ErlangHostnameRetriever.java:40) : Test short hostname: b5s201pc41
+18:02:16,686 F: (HostnameUtils.java:74) : Detected:: b5s201pc41 && b5s201pc41.fib.upc.es
+18:02:16,695 F: (BackendActivator.java:25) : Backend plugin started
+18:02:16,698 I: (ErlideUIPlugin.java:130) : Starting UI Thread[Worker-2,5,main]
+18:02:16,710 F: (ModelActivator.java:19) : Starting Erlang model api
+18:02:16,744 F: (BackendFactory.java:42) : Create ide backend 17.5.0
+18:02:16,744 F: (BackendFactory.java:56) : Create backend 23636_master_bd08_686219_erlide
+18:02:16,778 F: (OtpNodeProxy.java:302) : Runtime 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es starting
+18:02:17,077 F: (OtpNodeProxy.java:420) : START node :> ["c:\program files\erl6.4/bin/erl", -name, 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es, -setcookie, erlide] *** D:\BIG_DATA\HandsOn\2016-04-20_-_Spark_Graphs\material\UPCSchool_GraphFrames
+18:02:17,164 F: (OtpNodeProxy.java:213) : 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es: waiting connection to peer... 
+18:02:17,588 F: (OtpNodeProxy.java:220) : connected!
+18:02:17,698 F: (OtpNodeProxy.java:307) : Runtime 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es running
+18:02:18,091 F: (LogEventHandler.java:27) : info: {"Monitoring java node",'jerlide_46863ba@b5s201pc41.fib.upc.es'}
+18:02:18,092 F: (LogEventHandler.java:27) : info: {"Start monitor process: ",10000000,50000000}
+18:02:18,221 F: (ModelActivator.java:30) : Started model api
+18:02:18,240 I: (ErlideUIPlugin.java:152) : Started UI
+18:03:20,978 F: (OtpNodeProxy.java:312) : Runtime 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es stopping
+18:03:21,056 F: (OtpNodeProxy.java:272) : Runtime 23636_master_bd08_686219_erlide@b5s201pc41.fib.upc.es terminated
